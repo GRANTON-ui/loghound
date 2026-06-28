@@ -1,12 +1,33 @@
 # 🐕 LogHound: AI-Powered Log Diagnostics Engine
 
-![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite)
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)
-![License](https://img.shields.io/badge/License-Apache--2.0-green)
-![Status](https://img.shields.io/badge/Status-Active-success)
+[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-Apache--2.0-green)](./LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-success)](#)
 
-LogHound is a production-grade, AI-powered log analysis tool designed to assist developers, sysadmins, DevOps engineers, cybersecurity students, and IT professionals. By parsing raw application, database, container, or server logs alongside your connected codebase files, LogHound instantly pinpoints the precise file and line location of errors, isolates the technical root cause, and formulates evidence-backed diagnostics and actionable remediation suggestions complete with side-by-side code blocks.
+LogHound is an AI-powered log analysis tool for developers, SREs, and cybersecurity students. By parsing raw application, database, container, or server logs alongside your connected codebase files, LogHound instantly pinpoints the precise file and line location of errors, isolates the technical root cause, and formulates evidence-backed diagnostics and actionable remediation suggestions.
+
+---
+
+## 🔍 Quick Example
+
+### 1. Ingest Raw Stacktrace
+```text
+ERROR sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception in this transaction...
+```
+
+### 2. SRE Agent Response
+* **Severity Level:** `🚨 CRITICAL`
+* **Root Cause:** Database connection pool transaction was not rolled back after an external payment gateway timeout exception occurred.
+* **Suggested Fix:** Add a rollback handler inside the exception block before executing any consecutive queries:
+  ```python
+  try:
+      db.session.commit()
+  except Exception as e:
+      db.session.rollback() # ← Critical missing step
+      raise e
+  ```
 
 ---
 
@@ -163,18 +184,21 @@ Below is a structured analysis report output by LogHound's backend model:
 
 ## 📝 Project Status
 
-**Current Version:** `v0.1.0` (Initial Public Release)
+🟢 **Active Development**
 
-### Core Features:
-- **Connected Codebase Context:** Upload or drag-and-drop your workspace directory or files so the SRE agents can perform precise, line-level source code repairs.
-- **SRE Co-operative Agent Engine:** Triages raw log events, maps the error callstack, and provides structured explanations.
-- **Visual Chronological Timeline:** Maps step-by-step incident events chronologically.
-- **Sanitization Safe-Mode:** Automatic regex-based pre-scrubbing of credentials and API keys.
+**Current Version:** `v0.1.0-alpha`
 
-### Upcoming Roadmap:
-- **VS Code Extension:** Right-click traceback lines to instantly fetch SRE solutions inside your IDE.
-- **Terminal CLI:** A lightweight CLI to run `loghound analyze server.log` directly in bash.
-- **Automatic Log Streaming:** Connect direct integrations for active log shippers like FluentBit, Logstash, or Datadog.
+### Features Completed:
+- **Connected Codebase Context:** Upload or drag-and-drop your workspace directories or individual files to isolate precise line-level source code repairs.
+- **SRE Co-operative Agent Engine:** Triages raw log events, maps error callstacks, and provides structured explanations.
+- **Visual Chronological Timeline:** Automatically generates elegant step-by-step incident events chronologically.
+- **Sanitization Safe-Mode:** Automated regex-based pre-scrubbing of credentials, passwords, and private API keys before context transmission.
+
+### In Development & Planned:
+- **VS Code Extension:** Right-click traceback lines in your editor to instantly fetch SRE solutions in a sidebar.
+- **Terminal CLI:** A lightweight CLI utility to run `loghound analyze server.log` directly in your terminal.
+- **Local LLM Support:** Offline log analysis using quantized LLMs (Llama 3, Mistral) for privacy-first secure environments.
+- **Real-time Log Streaming:** Live direct integration with FluentBit, Logstash, or Datadog API ingestion.
 
 ---
 
