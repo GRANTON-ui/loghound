@@ -1,0 +1,8 @@
+{
+  "name": "LogHound",
+  "description": "An interactive SRE tool that analyzes server log tracebacks alongside your connected source files to isolate the exact line-level errors and provide precise step-by-step code remediations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
