@@ -1,6 +1,38 @@
 # 🐕 LogHound: AI-Powered Log Diagnostics Engine
 
-LogHound is a production-grade, AI-powered log analysis tool designed to assist developers, sysadmins, DevOps engineers, cybersecurity students, and IT professionals. By parsing raw application, database, container, or server logs, LogHound instantly pinpoints the precise file and line location of errors, isolates the technical root cause, and synthesizes step-by-step human-readable solutions complete with reference code examples.
+![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)
+![License](https://img.shields.io/badge/License-Apache--2.0-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
+
+LogHound is a production-grade, AI-powered log analysis tool designed to assist developers, sysadmins, DevOps engineers, cybersecurity students, and IT professionals. By parsing raw application, database, container, or server logs alongside your connected codebase files, LogHound instantly pinpoints the precise file and line location of errors, isolates the technical root cause, and formulates evidence-backed diagnostics and actionable remediation suggestions complete with side-by-side code blocks.
+
+---
+
+## 🏗️ Architecture
+
+```text
+       Raw Server Logs + Connected Codebase files
+                          ↓
+                   Log Sanitizer
+       (Scrubs passwords, API keys, and Secrets)
+                          ↓
+               SRE Prompt Builder Context
+                          ↓
+                 AI Analysis Engine
+       (Triage, Root Cause, Chronological Events)
+                          ↓
+               Multi-Agent Coordinator
+       (Confidence Scoring, Timeline Synthesizer)
+                          ↓
+        Human-Readable Diagnostics Report UI
+```
+
+LogHound uses a modular full-stack architecture where:
+- `server.ts` manages the Express server, static assets, and the SRE cooperative analysis pipeline with Google Gemini & OpenRouter APIs.
+- `src/App.tsx` renders the modern dashboard, the file/folder upload dropzones, and the dynamic visual timeline.
+- `src/utils.ts` handles log scrubbing, telemetry sanitization, and fallback heuristics.
 
 ---
 
@@ -129,16 +161,25 @@ Below is a structured analysis report output by LogHound's backend model:
 
 ---
 
-## 🗺️ Future Roadmap
+## 📝 Project Status
 
-1. **Automatic Log Streaming:** Connect direct integrations for active log shippers like FluentBit, Logstash, or Datadog APIs.
-2. **Slack & Discord Hooks:** Automatically alert developer channels when a `Critical` or `High` severity risk log is ingested.
-3. **Local Fine-Tuned Models:** Enable offline local log analysis using quantized LLMs (Llama-3, Mistral) for high-privacy server nodes.
-4. **Interactive Log Tracing:** Group logs by correlation IDs to let developers trace errors backward and forward through a session timeline.
+**Current Version:** `v0.1.0` (Initial Public Release)
+
+### Core Features:
+- **Connected Codebase Context:** Upload or drag-and-drop your workspace directory or files so the SRE agents can perform precise, line-level source code repairs.
+- **SRE Co-operative Agent Engine:** Triages raw log events, maps the error callstack, and provides structured explanations.
+- **Visual Chronological Timeline:** Maps step-by-step incident events chronologically.
+- **Sanitization Safe-Mode:** Automatic regex-based pre-scrubbing of credentials and API keys.
+
+### Upcoming Roadmap:
+- **VS Code Extension:** Right-click traceback lines to instantly fetch SRE solutions inside your IDE.
+- **Terminal CLI:** A lightweight CLI to run `loghound analyze server.log` directly in bash.
+- **Automatic Log Streaming:** Connect direct integrations for active log shippers like FluentBit, Logstash, or Datadog.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the Apache-2.0 License. See the LICENSE details.
-🐾 LogHound — Sniffing out error bugs before they bite your uptime.
+This project is licensed under the Apache-2.0 License. See the [LICENSE](./LICENSE) details.
+
+🐾 **LogHound** — Sniffing out error bugs before they bite your uptime.
